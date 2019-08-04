@@ -1,8 +1,6 @@
 {
-    "name": "pip-services3-container-go",
-    "registry": "pip-services",
-    "repository": "github.com/pip-services3-go/pip-services3-container-go",
-    "version": "3.0.0",
-    "build": null
-  }
-  
+  "name": "pip-services3-container-go",
+  "registry": "pip-services",
+  "version": "3.0.0",
+  "build": null
+}
