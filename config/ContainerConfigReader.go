@@ -20,11 +20,11 @@ func (c *TContainerConfigReader) ReadFromFile(correlationId string,
 
 	ext := filepath.Ext(path)
 
-	if ext == "json" {
+	if ext == ".json" {
 		return c.ReadFromJsonFile(correlationId, path, parameters)
 	}
 
-	if ext == "yaml" || ext == "yml" {
+	if ext == ".yaml" || ext == ".yml" {
 		return c.ReadFromYamlFile(correlationId, path, parameters)
 	}
 
