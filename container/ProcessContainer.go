@@ -1,10 +1,10 @@
 package container
 
 import (
+	"fmt"
 	"os"
 	"os/signal"
 	"strings"
-	"fmt"
 	"time"
 
 	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
@@ -12,39 +12,74 @@ import (
 	"github.com/pip-services3-go/pip-services3-components-go/log"
 )
 
+/*
+Inversion of control (IoC) container that runs as a system process. It processes command line arguments and handles unhandled exceptions and Ctrl-C signal to gracefully shutdown the container.
+
+Command line arguments
+--config / -c path to JSON or YAML file with container configuration (default: "./config/config.yml")
+--param / --params / -p value(s) to parameterize the container configuration
+--help / -h prints the container usage help
+see
+Container
+
+Example
+container = NewEmptyProcessContainer();
+container.Container.AddFactory(NewMyComponentFactory());
+
+container.Run(process.args);
+*/
 type ProcessContainer struct {
 	Container
 	configPath string
 }
 
+// Creates a new empty instance of the container.
+// Returns ProcessContainer
 func NewEmptyProcessContainer() *ProcessContainer {
-	c := &ProcessContainer {
-		Container: *NewEmptyContainer(),
+	c := &ProcessContainer{
+		Container:  *NewEmptyContainer(),
 		configPath: "./config/config.yml",
 	}
 	c.SetLogger(log.NewConsoleLogger())
 	return c
 }
 
+// Creates a new instance of the container.
+// Parameters:
+// 			- name string
+// 			a container name (accessible via ContextInfo)
+// 			- description string
+// 			a container description (accessible via ContextInfo)
+// Returns ProcessContainer
 func NewProcessContainer(name string, description string) *ProcessContainer {
-	c := &ProcessContainer {
-		Container: *NewContainer(name, description),
+	c := &ProcessContainer{
+		Container:  *NewContainer(name, description),
 		configPath: "./config/config.yml",
 	}
 	c.SetLogger(log.NewConsoleLogger())
 	return c
 }
 
+// Creates a new instance of the container inherit from reference.
+// Parameters:
+// 		- name string
+// 		a container name (accessible via ContextInfo)
+// 		- description string
+// 		a container description (accessible via ContextInfo)
+//		- referenceable crefer.IReferenceable
+//      - referenceble object for inherit
+// Returns *Container
 func InheritProcessContainer(name string, description string,
 	referenceable crefer.IReferenceable) *ProcessContainer {
-	c := &ProcessContainer {
-		Container: *InheritContainer(name, description, referenceable),
+	c := &ProcessContainer{
+		Container:  *InheritContainer(name, description, referenceable),
 		configPath: "./config/config.yml",
 	}
 	c.SetLogger(log.NewConsoleLogger())
 	return c
 }
 
+// Set path for configuration file
 func (c *ProcessContainer) SetConfigPath(configPath string) {
 	c.configPath = configPath
 }
@@ -52,8 +87,8 @@ func (c *ProcessContainer) SetConfigPath(configPath string) {
 func (c *ProcessContainer) getConfigPath(args []string) string {
 	for index, arg := range args {
 		nextArg := ""
-		if index < len(args) - 1 {
-			nextArg = args[index + 1]
+		if index < len(args)-1 {
+			nextArg = args[index+1]
 			if strings.HasPrefix(nextArg, "-") {
 				nextArg = ""
 			}
@@ -73,8 +108,8 @@ func (c *ProcessContainer) getParameters(args []string) *cconfig.ConfigParams {
 	for index := 0; index < len(args); index++ {
 		arg := args[index]
 		nextArg := ""
-		if index < len(args) - 1 {
-			nextArg = args[index + 1]
+		if index < len(args)-1 {
+			nextArg = args[index+1]
 			if strings.HasPrefix(nextArg, "-") {
 				nextArg = ""
 			}
@@ -131,7 +166,7 @@ func (c *ProcessContainer) captureExit(correlationId string) {
 
 	go func() {
 		select {
-		case <- ch:
+		case <-ch:
 			c.Close(correlationId)
 			c.Logger().Info(correlationId, "Googbye!")
 			os.Exit(0)
@@ -139,6 +174,11 @@ func (c *ProcessContainer) captureExit(correlationId string) {
 	}()
 }
 
+// Runs the container by instantiating and running components inside the container.
+// It reads the container configuration, creates, configures, references and opens components. On process exit it closes, unreferences and destroys components to gracefully shutdown.
+// Parameters:
+// 			- args []string
+// 			command line arguments
 func (c *ProcessContainer) Run(args []string) {
 	if c.showHelp(args) {
 		c.printHelp()

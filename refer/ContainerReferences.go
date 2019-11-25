@@ -10,16 +10,27 @@ import (
 	"github.com/pip-services3-go/pip-services3-container-go/config"
 )
 
+/*
+Container managed references that can be created from container configuration.
+*/
 type ContainerReferences struct {
 	ManagedReferences
 }
 
+// Creates a new instance of the references
+// Returns *ContainerReferences
 func NewContainerReferences() *ContainerReferences {
-	return &ContainerReferences {
+	return &ContainerReferences{
 		ManagedReferences: *NewEmptyManagedReferences(),
 	}
 }
 
+// Puts components into the references from container configuration.
+// Parameters:
+// 			- config config.ContainerConfig
+// 			a container configuration with information of components to be added.
+// Returns error
+// CreateError when one of component cannot be created.
 func (c *ContainerReferences) PutFromConfig(config config.ContainerConfig) error {
 	var err error
 	var locator interface{}
@@ -50,11 +61,11 @@ func (c *ContainerReferences) PutFromConfig(config config.ContainerConfig) error
 		// Check that component was created
 		if component == nil {
 			return build.NewCreateError(
-				"CANNOT_CREATE_COMPONENT", 
+				"CANNOT_CREATE_COMPONENT",
 				"Cannot create component",
 			).WithDetails("config", config)
 		}
-		
+
 		fmt.Printf("Created component %v\n", locator)
 
 		// Add component to the list
