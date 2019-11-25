@@ -9,17 +9,17 @@ The framework provides a light-weight container that can be embedded inside a se
 as a system process, for example. Container configuration serves as a recipe for instantiating and configuring components inside the container.  
 The default container factory provides generic functionality on-demand, such as logging and performance monitoring.
 
-- [**Conteiner**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-node/conteiner) - Component container and container as a system process
-- [**Build**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-node/build) - Container default factory
-- [**Config**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-node/config) - Container configuration
-- [**Refer**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-node/refer) - Container references
+- [**Conteiner**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-go/conteiner) - Component container and container as a system process
+- [**Build**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-go/build) - Container default factory
+- [**Config**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-go/config) - Container configuration
+- [**Refer**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-go/refer) - Container references
 
 Quick Links:
 
 * [Downloads](https://github.com/pip-services3-go/pip-services3-container-go.git)
 * [API Reference](https://godoc.org/github.com/pip-services3-go/pip-services3-container-go/)
-* [Building and Testing](https://github.com/pip-services3-node/pip-services3-container-node/blob/master/docs/Development.md)
-* [Contributing](https://github.com/pip-services3-node/pip-services3-container-node/blob/master/docs/Development.md#contrib)
+* [Building and Testing](https://github.com/pip-services3-go/pip-services3-container-go/blob/master/docs/Development.md)
+* [Contributing](https://github.com/pip-services3-go/pip-services3-container-go/blob/master/docs/Development.md#contrib)
 
 ## Acknowledgements
 
