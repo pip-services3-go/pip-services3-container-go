@@ -3,7 +3,7 @@
 This framework is a part of the [Pip.Services](https://github.com/pip-services/pip-services) project.
 It provides an inversion-of-control component container to facilitate the development of composable services and applications.
 
-As all Pip.Services projects this framework is implemented in a variety of different languages: Java, .NET, Python, Golang, Golang. 
+As all Pip.Services projects this framework is implemented in a variety of different languages: Java, .NET, Python, Node.js, Golang. 
 
 The framework provides a light-weight container that can be embedded inside a service or application, or can be run by itself,
 as a system process, for example. Container configuration serves as a recipe for instantiating and configuring components inside the container.  
