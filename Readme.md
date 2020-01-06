@@ -9,7 +9,7 @@ The framework provides a light-weight container that can be embedded inside a se
 as a system process, for example. Container configuration serves as a recipe for instantiating and configuring components inside the container.  
 The default container factory provides generic functionality on-demand, such as logging and performance monitoring.
 
-- [**Conteiner**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-go/container) - Component container and container as a system process
+- [**Container**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-go/container) - Component container and container as a system process
 - [**Build**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-go/build) - Container default factory
 - [**Config**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-go/config) - Container configuration
 - [**Refer**](https://godoc.org/github.com/pip-services3-go/pip-services3-container-go/refer) - Container references
