@@ -1,15 +1,15 @@
 package container
 
 import (
-	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
-	"github.com/pip-services3-go/pip-services3-commons-go/errors"
-	crefer "github.com/pip-services3-go/pip-services3-commons-go/refer"
-	cbuild "github.com/pip-services3-go/pip-services3-components-go/build"
-	"github.com/pip-services3-go/pip-services3-components-go/info"
-	"github.com/pip-services3-go/pip-services3-components-go/log"
-	"github.com/pip-services3-go/pip-services3-container-go/build"
-	"github.com/pip-services3-go/pip-services3-container-go/config"
-	"github.com/pip-services3-go/pip-services3-container-go/refer"
+	cconfig "github.com/pip-services3-go/pip-services3-commons-go/v3/config"
+	"github.com/pip-services3-go/pip-services3-commons-go/v3/errors"
+	crefer "github.com/pip-services3-go/pip-services3-commons-go/v3/refer"
+	cbuild "github.com/pip-services3-go/pip-services3-components-go/v3/build"
+	"github.com/pip-services3-go/pip-services3-components-go/v3/info"
+	"github.com/pip-services3-go/pip-services3-components-go/v3/log"
+	"github.com/pip-services3-go/pip-services3-container-go/v3/build"
+	"github.com/pip-services3-go/pip-services3-container-go/v3/config"
+	"github.com/pip-services3-go/pip-services3-container-go/v3/refer"
 )
 
 /*

@@ -1,7 +1,7 @@
 package container
 
 import (
-	_ "github.com/pip-services3-go/pip-services3-container-go/build"
-	_ "github.com/pip-services3-go/pip-services3-container-go/config"
-	_ "github.com/pip-services3-go/pip-services3-container-go/refer"
+	_ "github.com/pip-services3-go/pip-services3-container-go/v3/build"
+	_ "github.com/pip-services3-go/pip-services3-container-go/v3/config"
+	_ "github.com/pip-services3-go/pip-services3-container-go/v3/refer"
 )

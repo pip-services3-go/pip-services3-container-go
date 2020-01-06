@@ -16,7 +16,7 @@ The default container factory provides generic functionality on-demand, such as 
 
 Quick Links:
 
-* [Downloads](https://github.com/pip-services3-go/pip-services3-container-go.git)
+* [Downloads](https://github.com/pip-services3-go/pip-services3-container-go/blob/master/docs/Downloads.md)
 * [API Reference](https://godoc.org/github.com/pip-services3-go/pip-services3-container-go/)
 * [Building and Testing](https://github.com/pip-services3-go/pip-services3-container-go/blob/master/docs/Development.md)
 * [Contributing](https://github.com/pip-services3-go/pip-services3-container-go/blob/master/docs/Development.md#contrib)
