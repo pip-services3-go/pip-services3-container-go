@@ -1,6 +1,6 @@
 package refer
 
-import crefer "github.com/pip-services3-go/pip-services3-commons-go/v3/refer"
+import crefer "github.com/pip-services3-go/pip-services3-commons-go/refer"
 
 /*
 Chainable decorator for IReferences that allows to inject additional capabilities such as

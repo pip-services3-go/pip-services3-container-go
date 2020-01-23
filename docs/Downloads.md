@@ -7,7 +7,7 @@ To use the container you can either include dependency into your go file:
 
     ...
     import (
-        cauth "github.com/pip-services3-go/pip-services3-container-go/v3/auth"
+        cauth "github.com/pip-services3-go/pip-services3-container-go/auth"
     )
 
 ``` 

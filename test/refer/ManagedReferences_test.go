@@ -5,9 +5,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/refer"
-	"github.com/pip-services3-go/pip-services3-components-go/v3/log"
-	crefer "github.com/pip-services3-go/pip-services3-container-go/v3/refer"
+	"github.com/pip-services3-go/pip-services3-commons-go/refer"
+	"github.com/pip-services3-go/pip-services3-components-go/log"
+	crefer "github.com/pip-services3-go/pip-services3-container-go/refer"
 )
 
 func TestAutoCreateComponent(t *testing.T) {

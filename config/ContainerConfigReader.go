@@ -3,9 +3,9 @@ package config
 import (
 	"path/filepath"
 
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/config"
-	"github.com/pip-services3-go/pip-services3-commons-go/v3/errors"
-	cconfig "github.com/pip-services3-go/pip-services3-components-go/v3/config"
+	"github.com/pip-services3-go/pip-services3-commons-go/config"
+	"github.com/pip-services3-go/pip-services3-commons-go/errors"
+	cconfig "github.com/pip-services3-go/pip-services3-components-go/config"
 )
 
 /*
