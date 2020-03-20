@@ -39,6 +39,7 @@ go mod init mod
 
 # Update source code updates from github
 go get -u
+```
 
 ## <a name="build"></a> Building
 
@@ -47,7 +48,7 @@ So, if you make changes to the source code you need to compile it before running
 The process will output compiled javascript files into /bin folder.
 
 ```bash
-go buld
+go build
 ```
 
 ## <a name="test"></a> Testing
