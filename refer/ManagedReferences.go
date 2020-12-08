@@ -22,8 +22,8 @@ type ManagedReferences struct {
 
 // Creates a new instance of the references
 // Parameters:
-// 			- tuples []interface{}
-// 			tuples where odd values are component locators (descriptors) and even values are component references
+//   - tuples []interface{}
+//   tuples where odd values are component locators (descriptors) and even values are component references
 // Returns *ManagedReferences
 func NewManagedReferences(tuples []interface{}) *ManagedReferences {
 	c := &ManagedReferences{
@@ -48,8 +48,8 @@ func NewEmptyManagedReferences() *ManagedReferences {
 
 // Creates a new ManagedReferences object filled with provided key-value pairs called tuples. Tuples parameters contain a sequence of locator1, component1, locator2, component2, ... pairs.
 // Parameters:
-//  		- tuples ...interface{}
-// 			the tuples to fill a new ManagedReferences object.
+//   - tuples ...interface{}
+//   the tuples to fill a new ManagedReferences object.
 // Returns *ManagedReferences
 // a new ManagedReferences object.
 func NewManagedReferencesFromTuples(tuples ...interface{}) *ManagedReferences {
@@ -65,8 +65,8 @@ func (c *ManagedReferences) IsOpen() bool {
 
 // Opens the component.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
 // Returns error
 func (c *ManagedReferences) Open(correlationId string) error {
 	err := c.Linker.Open(correlationId)
@@ -78,8 +78,8 @@ func (c *ManagedReferences) Open(correlationId string) error {
 
 // Closes component and frees used resources.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
 // Returns error
 func (c *ManagedReferences) Close(correlationId string) error {
 	err := c.Runner.Close(correlationId)

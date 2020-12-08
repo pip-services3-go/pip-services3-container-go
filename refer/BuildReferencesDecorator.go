@@ -16,10 +16,10 @@ type BuildReferencesDecorator struct {
 
 // Creates a new instance of the decorator.
 // Parameters:
-// 			- nextReferences crefer.IReferences
-// 			the next references or decorator in the chain.
-// 			- topReferences IReferences
-// 			the decorator at the top of the chain.
+//   - nextReferences crefer.IReferences
+//   the next references or decorator in the chain.
+//   - topReferences IReferences
+//   the decorator at the top of the chain.
 // Returns *BuildReferencesDecorator
 func NewBuildReferencesDecorator(nextReferences crefer.IReferences,
 	topReferences crefer.IReferences) *BuildReferencesDecorator {
@@ -31,8 +31,8 @@ func NewBuildReferencesDecorator(nextReferences crefer.IReferences,
 // Finds a factory capable creating component by given descriptor from the components registered in the
 // references.
 // Parameters:
-// 			- locator interface{}
-// 			a locator of component to be created.
+//   - locator interface{}
+//   a locator of component to be created.
 // Returns build.IFactory
 // found factory or nil if factory was not found.
 func (c *BuildReferencesDecorator) FindFactory(locator interface{}) build.IFactory {
@@ -54,10 +54,10 @@ func (c *BuildReferencesDecorator) FindFactory(locator interface{}) build.IFacto
 // see
 // findFactory
 // Parameters:
-// 			- locator interface{}
-// 			a locator to identify component to be created.
-// 			- factory build.IFactory
-// 			a factory that shall create the component.
+//   - locator interface{}
+//   a locator to identify component to be created.
+//   - factory build.IFactory
+//   a factory that shall create the component.
 // Returns interface{}
 // the created component.
 func (c *BuildReferencesDecorator) Create(locator interface{},
@@ -81,10 +81,10 @@ func (c *BuildReferencesDecorator) Create(locator interface{},
 // Clarifies a component locator by merging two descriptors into one to replace missing fields.
 // That allows to get a more complete descriptor that includes all possible fields.
 // Parameters:
-// 			- locator intrface{}
-// 			a component locator to clarify.
-// 			- factory build.IFactory
-// 			a factory that shall create the component.
+//   - locator intrface{}
+//   a component locator to clarify.
+//   - factory build.IFactory
+//   a factory that shall create the component.
 // Returns interface{}
 // clarified component descriptor (locator)
 func (c *BuildReferencesDecorator) ClarifyLocator(locator interface{},
@@ -131,8 +131,8 @@ func (c *BuildReferencesDecorator) ClarifyLocator(locator interface{},
 
 // Gets an optional component reference that matches specified locator.
 // Parameters:
-// 			- locator interface{}
-// 			the locator to find references by.
+//   - locator interface{}
+//   the locator to find references by.
 // Returns interface{}
 // a matching component reference or nil if nothing was found.
 func (c *BuildReferencesDecorator) GetOneOptional(locator interface{}) interface{} {
@@ -147,8 +147,8 @@ func (c *BuildReferencesDecorator) GetOneOptional(locator interface{}) interface
 // throws
 // a [[ReferenceException]] when no references found.
 // Parameters:
-// 			- locator interface{}
-// 			the locator to find a reference by.
+//   - locator interface{}
+//   the locator to find a reference by.
 // Returns interface{}, error
 // a matching component reference and error.
 func (c *BuildReferencesDecorator) GetOneRequired(locator interface{}) (interface{}, error) {
@@ -161,8 +161,8 @@ func (c *BuildReferencesDecorator) GetOneRequired(locator interface{}) (interfac
 
 // Gets all component references that match specified locator.
 // Parameters:
-// 			- locator interface{}
-// 			the locator to find references by.
+//   - locator interface{}
+//   the locator to find references by.
 // Returns []interface{}
 // a list with matching component references or empty list if nothing was found.
 func (c *BuildReferencesDecorator) GetOptional(locator interface{}) []interface{} {
@@ -175,8 +175,8 @@ func (c *BuildReferencesDecorator) GetOptional(locator interface{}) []interface{
 // throws
 // a [[ReferenceException]] when no references found.
 // Parameters:
-// 			- locator interface{}
-// the locator to find references by.
+//  - locator interface{}
+//  the locator to find references by.
 // Returns []interface{}, erorr
 // a list with matching component references and error.
 func (c *BuildReferencesDecorator) GetRequired(locator interface{}) ([]interface{}, error) {
@@ -187,10 +187,10 @@ func (c *BuildReferencesDecorator) GetRequired(locator interface{}) ([]interface
 // throws
 // a [[ReferenceError]] when required is set to true but no references found.
 // Parameters:
-// 			- locator interface
-// 			the locator to find a reference by.
-// 			- required bool
-// 			forces to raise an exception if no reference is found.
+//   - locator interface
+//   the locator to find a reference by.
+//   - required bool
+//   forces to raise an exception if no reference is found.
 // Returns []interface, error
 // a list with matching component references and error.
 func (c *BuildReferencesDecorator) Find(locator interface{}, required bool) ([]interface{}, error) {

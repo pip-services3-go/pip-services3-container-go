@@ -20,10 +20,10 @@ type ComponentConfig struct {
 
 // Creates a new instance of the component configuration.
 // Parameters:
-// 			- descriptor *refer.Descriptor
-// 			a components descriptor (locator).
-// 			- config *config.ConfigParams
-// 			component configuration parameters.
+//  - descriptor *refer.Descriptor
+//  a components descriptor (locator).
+//  - config *config.ConfigParams
+//  component configuration parameters.
 // Returns *ComponentConfig
 func NewComponentConfigFromDescriptor(descriptor *refer.Descriptor,
 	config *config.ConfigParams) *ComponentConfig {
@@ -35,10 +35,10 @@ func NewComponentConfigFromDescriptor(descriptor *refer.Descriptor,
 
 // Creates a new instance of the component configuration.
 // Parameters:
-// 			- typ *reflect.TypeDescriptor
-//			a components type descriptor.
-// 			- config *config.ConfigParams
-// 			component configuration parameters.
+//  - typ *reflect.TypeDescriptor
+//  a components type descriptor.
+//  - config *config.ConfigParams
+//  component configuration parameters.
 // Returns *ComponentConfig
 func NewComponentConfigFromType(typ *reflect.TypeDescriptor,
 	config *config.ConfigParams) *ComponentConfig {
@@ -50,8 +50,8 @@ func NewComponentConfigFromType(typ *reflect.TypeDescriptor,
 
 // Creates a new instance of ComponentConfig based on section from container configuration.
 // Parameters:
-// 			- config *config.ConfigParams
-// 			component parameters from container configuration
+//  - config *config.ConfigParams
+//  component parameters from container configuration
 // Returns *ComponentConfig, error
 // a newly created ComponentConfig and ConfigError when neither component descriptor or type is found.
 func ReadComponentConfigFromConfig(config *config.ConfigParams) (result *ComponentConfig, err error) {

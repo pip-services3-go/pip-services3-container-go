@@ -16,17 +16,17 @@ import (
 Inversion of control (IoC) container that runs as a system process. It processes command line arguments and handles unhandled exceptions and Ctrl-C signal to gracefully shutdown the container.
 
 Command line arguments
---config / -c path to JSON or YAML file with container configuration (default: "./config/config.yml")
---param / --params / -p value(s) to parameterize the container configuration
---help / -h prints the container usage help
+  --config / -c path to JSON or YAML file with container configuration (default: "./config/config.yml")
+  --param / --params / -p value(s) to parameterize the container configuration
+  --help / -h prints the container usage help
 see
 Container
 
 Example
-container = NewEmptyProcessContainer();
-container.Container.AddFactory(NewMyComponentFactory());
-
-container.Run(process.args);
+  container = NewEmptyProcessContainer();
+  container.Container.AddFactory(NewMyComponentFactory());
+  
+  container.Run(process.args);
 */
 type ProcessContainer struct {
 	Container
@@ -46,10 +46,10 @@ func NewEmptyProcessContainer() *ProcessContainer {
 
 // Creates a new instance of the container.
 // Parameters:
-// 			- name string
-// 			a container name (accessible via ContextInfo)
-// 			- description string
-// 			a container description (accessible via ContextInfo)
+//   - name string
+//   a container name (accessible via ContextInfo)
+//   - description string
+//   a container description (accessible via ContextInfo)
 // Returns ProcessContainer
 func NewProcessContainer(name string, description string) *ProcessContainer {
 	c := &ProcessContainer{
@@ -62,12 +62,12 @@ func NewProcessContainer(name string, description string) *ProcessContainer {
 
 // Creates a new instance of the container inherit from reference.
 // Parameters:
-// 		- name string
-// 		a container name (accessible via ContextInfo)
-// 		- description string
-// 		a container description (accessible via ContextInfo)
-//		- referenceable crefer.IReferenceable
-//      - referenceble object for inherit
+//   - name string
+//   a container name (accessible via ContextInfo)
+//   - description string
+//   a container description (accessible via ContextInfo)
+//   - referenceable crefer.IReferenceable
+//   - referenceble object for inherit
 // Returns *Container
 func InheritProcessContainer(name string, description string,
 	referenceable crefer.IReferenceable) *ProcessContainer {
@@ -177,8 +177,8 @@ func (c *ProcessContainer) captureExit(correlationId string) {
 // Runs the container by instantiating and running components inside the container.
 // It reads the container configuration, creates, configures, references and opens components. On process exit it closes, unreferences and destroys components to gracefully shutdown.
 // Parameters:
-// 			- args []string
-// 			command line arguments
+//   - args []string
+//   command line arguments
 func (c *ProcessContainer) Run(args []string) {
 	if c.showHelp(args) {
 		c.printHelp()

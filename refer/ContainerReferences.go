@@ -27,8 +27,8 @@ func NewContainerReferences() *ContainerReferences {
 
 // Puts components into the references from container configuration.
 // Parameters:
-// 			- config config.ContainerConfig
-// 			a container configuration with information of components to be added.
+//  - config config.ContainerConfig
+//  a container configuration with information of components to be added.
 // Returns error
 // CreateError when one of component cannot be created.
 func (c *ContainerReferences) PutFromConfig(config config.ContainerConfig) error {

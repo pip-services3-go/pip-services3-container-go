@@ -47,29 +47,29 @@ description: human-readable description of the context
 properties: entire section of additional descriptive properties
  - ...
 Example
-======= config.yml ========
-- descriptor: mygroup:mycomponent1:default:default:1.0
-  param1: 123
-  param2: ABC
-
-- type: mycomponent2,mypackage
-  param1: 321
-  param2: XYZ
-============================
-
-container := NewEmptyContainer();
-container.AddFactory(newMyComponentFactory());
-
-parameters := NewConfigParamsFromValue(process.env);
-container.ReadConfigFromFile("123", "./config/config.yml", parameters);
-
-container.Open("123", (err) => {
-    console.Log("Container is opened");
-    ...
-    container.Close("123", (err) => {
-        console.Log("Container is closed");
-    });
-});
+  ======= config.yml ========
+  - descriptor: mygroup:mycomponent1:default:default:1.0
+    param1: 123
+    param2: ABC
+  
+  - type: mycomponent2,mypackage
+    param1: 321
+    param2: XYZ
+  ============================
+ 
+  container := NewEmptyContainer();
+  container.AddFactory(newMyComponentFactory());
+  
+  parameters := NewConfigParamsFromValue(process.env);
+  container.ReadConfigFromFile("123", "./config/config.yml", parameters);
+  
+  container.Open("123", (err) => {
+      console.Log("Container is opened");
+      ...
+      container.Close("123", (err) => {
+          console.Log("Container is closed");
+      });
+  });
 */
 type Container struct {
 	logger          log.ILogger
@@ -93,10 +93,10 @@ func NewEmptyContainer() *Container {
 
 // Creates a new instance of the container.
 // Parameters:
-// 		- name string
-// 		a container name (accessible via ContextInfo)
-// 		- description string
-// 		a container description (accessible via ContextInfo)
+//  - name string
+//  a container name (accessible via ContextInfo)
+//  - description string
+//  a container description (accessible via ContextInfo)
 // Returns *Container
 func NewContainer(name string, description string) *Container {
 	c := NewEmptyContainer()
@@ -109,12 +109,12 @@ func NewContainer(name string, description string) *Container {
 
 // Creates a new instance of the container inherit from reference.
 // Parameters:
-// 		- name string
-// 		a container name (accessible via ContextInfo)
-// 		- description string
-// 		a container description (accessible via ContextInfo)
-//		- referenceable crefer.IReferenceable
-//      - referenceble object for inherit
+//   - name string
+//   a container name (accessible via ContextInfo)
+//   - description string
+//   a container description (accessible via ContextInfo)
+//   - referenceable crefer.IReferenceable
+//   - referenceble object for inherit
 // Returns *Container
 func InheritContainer(name string, description string,
 	referenceable crefer.IReferenceable) *Container {
@@ -130,19 +130,19 @@ func InheritContainer(name string, description string,
 
 // Configures component by passing configuration parameters.
 // Parameters:
-// 			- config  *cconfig.ConfigParams
-// 			configuration parameters to be set.
+//   - config  *cconfig.ConfigParams
+//   configuration parameters to be set.
 func (c *Container) Configure(conf *cconfig.ConfigParams) {
 	c.config, _ = config.ReadContainerConfigFromConfig(conf)
 }
 
 // Reads container configuration from JSON or YAML file and parameterizes it with given values.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- path string
-// 			a path to configuration file
-// 			- parameters *cconfig.ConfigParams
+//   - correlationId string
+//   transaction id to trace execution through call chain.
+//   - path string
+//   a path to configuration file
+//   - parameters *cconfig.ConfigParams
 // values to parameters the configuration or null to skip parameterization.
 func (c *Container) ReadConfigFromFile(correlationId string,
 	path string, parameters *cconfig.ConfigParams) error {
@@ -186,8 +186,8 @@ func (c *Container) Info() *info.ContextInfo {
 
 // Adds a factory to the container. The factory is used to create components added to the container by their locators (descriptors).
 // Parameters:
-// 			- factory IFactory
-// 			a component factory to be added.
+//  - factory IFactory
+//  a component factory to be added.
 func (c *Container) AddFactory(factory cbuild.IFactory) {
 	c.factories.Add(factory)
 }
@@ -201,8 +201,8 @@ func (c *Container) IsOpen() bool {
 
 // Opens the component.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
 // Returns error
 func (c *Container) Open(correlationId string) error {
 	var err error
@@ -256,8 +256,8 @@ func (c *Container) Open(correlationId string) error {
 
 // Closes component and frees used resources.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
 // Returns error
 func (c *Container) Close(correlationId string) error {
 	// Skip if container wasn't opened

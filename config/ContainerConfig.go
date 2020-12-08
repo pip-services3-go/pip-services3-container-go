@@ -11,8 +11,8 @@ type ContainerConfig []*ComponentConfig
 
 // Creates a new instance of container configuration.
 // Parameters:
-// 			- components *ComponentConfig
-// a list of component configurations.
+//  - components *ComponentConfig
+//   a list of component configurations.
 // Returns ContainerConfig
 func NewContainerConfig(components ...*ComponentConfig) ContainerConfig {
 	return components
@@ -22,8 +22,8 @@ func NewContainerConfig(components ...*ComponentConfig) ContainerConfig {
 // see
 // fromConfig
 // Parameters:
-// 			- value interface{}
-// an object with key-value pairs used to initialize a new ContainerConfig.
+// 	 - value interface{}
+//   an object with key-value pairs used to initialize a new ContainerConfig.
 // Returns ContainerConfig
 // a new ContainerConfig object.
 func NewContainerConfigFromValue(value interface{}) ContainerConfig {
@@ -34,8 +34,8 @@ func NewContainerConfigFromValue(value interface{}) ContainerConfig {
 
 // Creates a new ContainerConfig object based on configuration parameters. Each section in the configuration parameters is converted into a component configuration.
 // Parameters:
-// 		- config *config.ConfigParams
-// Returns ContainerConfig, error
+//  - config *config.ConfigParams
+//  Returns ContainerConfig, error
 // a new ContainerConfig object and error
 func ReadContainerConfigFromConfig(config *config.ConfigParams) (ContainerConfig, error) {
 	if config == nil {

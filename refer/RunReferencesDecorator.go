@@ -17,10 +17,10 @@ type RunReferencesDecorator struct {
 
 // Creates a new instance of the decorator.
 // Parameters:
-// 			- nextReferences crefer.IReferences
-// 			the next references or decorator in the chain.
-// 			- topReferences crefer.IReferences
-// 			the decorator at the top of the chain.
+//   - nextReferences crefer.IReferences
+//   the next references or decorator in the chain.
+//   - topReferences crefer.IReferences
+//   the decorator at the top of the chain.
 // Returns *RunReferencesDecorator
 func NewRunReferencesDecorator(nextReferences crefer.IReferences,
 	topReferences crefer.IReferences) *RunReferencesDecorator {
@@ -38,8 +38,8 @@ func (c *RunReferencesDecorator) IsOpen() bool {
 
 // Opens the component.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
 // Returns error
 func (c *RunReferencesDecorator) Open(correlationId string) error {
 	if !c.opened {
@@ -53,8 +53,8 @@ func (c *RunReferencesDecorator) Open(correlationId string) error {
 
 // Closes component and frees used resources.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
+//   - correlationId string
+//   transaction id to trace execution through call chain.
 // Returns error
 func (c *RunReferencesDecorator) Close(correlationId string) error {
 	if c.opened {
@@ -68,10 +68,10 @@ func (c *RunReferencesDecorator) Close(correlationId string) error {
 
 // Puts a new reference into this reference map.
 // Parameters:
-// 			- locator interface{}
-// 			a locator to find the reference by.
-// 			- component interface{}
-// 			a component reference to be added.
+//   - locator interface{}
+//   a locator to find the reference by.
+//   - component interface{}
+//   a component reference to be added.
 func (c *RunReferencesDecorator) Put(locator interface{}, component interface{}) {
 	c.ReferencesDecorator.Put(locator, component)
 
@@ -84,8 +84,8 @@ func (c *RunReferencesDecorator) Put(locator interface{}, component interface{})
 // see
 // removeAll
 // Parameters:
-// 			- locator interface{}
-// 			a locator to remove reference
+//   - locator interface{}
+//   a locator to remove reference
 // Returns interfce{}
 // the removed component reference.
 func (c *RunReferencesDecorator) Remove(locator interface{}) interface{} {
@@ -100,8 +100,8 @@ func (c *RunReferencesDecorator) Remove(locator interface{}) interface{} {
 
 // Removes all component references that match the specified locator.
 // Parameters:
-// 			- locator interface{}
-// 			the locator to remove references by.
+//   - locator interface{}
+//   the locator to remove references by.
 // Returns []interface{}
 // a list, containing all removed references.
 func (c *RunReferencesDecorator) RemoveAll(locator interface{}) []interface{} {

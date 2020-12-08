@@ -17,12 +17,12 @@ var ContainerConfigReader = &TContainerConfigReader{}
 
 // Reads container configuration from JSON or YAML file. The type of the file is determined by file extension.
 // Parameters:
-// 		- correlationId string
-// 		transaction id to trace execution through call chain.
-// 		- path string
-// 		a path to component configuration file.
-// 		- parameters *config.ConfigParams
-// 		values to parameters the configuration or null to skip parameterization.
+//  - correlationId string
+//  transaction id to trace execution through call chain.
+//  - path string
+//  a path to component configuration file.
+//  - parameters *config.ConfigParams
+//  values to parameters the configuration or null to skip parameterization.
 // Returns ContainerConfig, error
 // the read container configuration and error
 func (c *TContainerConfigReader) ReadFromFile(correlationId string,
@@ -46,12 +46,12 @@ func (c *TContainerConfigReader) ReadFromFile(correlationId string,
 
 // Reads container configuration from JSON file.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- path string
-// 			a path to component configuration file.
-// 			- parameters *config.ConfigParams
-// 			values to parameters the configuration or null to skip parameterization.
+//  - correlationId string
+//  transaction id to trace execution through call chain.
+//  - path string
+//  a path to component configuration file.
+//  - parameters *config.ConfigParams
+//  values to parameters the configuration or null to skip parameterization.
 // Returns ContainerConfig, error
 // the read container configuration and error
 func (c *TContainerConfigReader) ReadFromJsonFile(correlationId string,
@@ -65,12 +65,12 @@ func (c *TContainerConfigReader) ReadFromJsonFile(correlationId string,
 
 // Reads container configuration from YAML file.
 // Parameters:
-// 			- correlationId string
-// 			transaction id to trace execution through call chain.
-// 			- path string
-// 			a path to component configuration file.
-// 			- parameters *config.ConfigParams
-// 			values to parameters the configuration or null to skip parameterization.
+//  - correlationId string
+//  transaction id to trace execution through call chain.
+//  - path string
+//  a path to component configuration file.
+//  - parameters *config.ConfigParams
+//  values to parameters the configuration or null to skip parameterization.
 // Returns ContainerConfig, error
 // the read container configuration and error
 func (c *TContainerConfigReader) ReadFromYamlFile(correlationId string,

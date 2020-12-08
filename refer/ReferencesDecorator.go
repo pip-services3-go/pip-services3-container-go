@@ -14,10 +14,10 @@ type ReferencesDecorator struct {
 
 // Creates a new instance of the decorator.
 // Parameters:
-// 			- nextReferences crefer.IReferences
-// 			the next references or decorator in the chain.
-// 			- topReferences crefer.IReferences
-// 			the decorator at the top of the chain.
+//   - nextReferences crefer.IReferences
+//   the next references or decorator in the chain.
+//   - topReferences crefer.IReferences
+//   the decorator at the top of the chain.
 // Returns *ReferencesDecorator
 func NewReferencesDecorator(nextReferences crefer.IReferences,
 	topReferences crefer.IReferences) *ReferencesDecorator {
@@ -38,10 +38,10 @@ func NewReferencesDecorator(nextReferences crefer.IReferences,
 
 // Puts a new reference into this reference map.
 // Parameters:
-// 			- locator interface{}
-// 			a locator to find the reference by.
-// 			- component interface{}
-// 			a component reference to be added.
+//   - locator interface{}
+//   a locator to find the reference by.
+//   - component interface{}
+//   a component reference to be added.
 func (c *ReferencesDecorator) Put(locator interface{}, component interface{}) {
 	c.NextReferences.Put(locator, component)
 }
@@ -50,8 +50,8 @@ func (c *ReferencesDecorator) Put(locator interface{}, component interface{}) {
 // see
 // RemoveAll
 // Parameters:
-// 			- locator  interface{}
-// 			a locator to remove reference
+//   - locator  interface{}
+//   a locator to remove reference
 // Returns interface{}
 // the removed component reference.
 func (c *ReferencesDecorator) Remove(locator interface{}) interface{} {
@@ -60,8 +60,8 @@ func (c *ReferencesDecorator) Remove(locator interface{}) interface{} {
 
 // Removes all component references that match the specified locator.
 // Parameters:
-// 			- locator interface{}
-// 			the locator to remove references by.
+//   - locator interface{}
+//   the locator to remove references by.
 // Returns []interface{}
 // a list, containing all removed references.
 func (c *ReferencesDecorator) RemoveAll(locator interface{}) []interface{} {
@@ -84,8 +84,8 @@ func (c *ReferencesDecorator) GetAll() []interface{} {
 
 // Gets an optional component reference that matches specified locator.
 // Parameters:
-// 			- locator interface{}
-// 			the locator to find references by.
+//   - locator interface{}
+//   the locator to find references by.
 // Returns interface{}
 // a matching component reference or null if nothing was found.
 func (c *ReferencesDecorator) GetOneOptional(locator interface{}) interface{} {
@@ -105,8 +105,8 @@ func (c *ReferencesDecorator) GetOneOptional(locator interface{}) interface{} {
 
 // Gets a required component reference that matches specified locator.
 // Parameters:
-// 			- locator interface{}
-// the locator to find a reference by.
+//   - locator interface{}
+//   the locator to find a reference by.
 // Returns interface{}, error
 // a matching component reference, a [[ReferenceError]] when no references found.
 func (c *ReferencesDecorator) GetOneRequired(locator interface{}) (interface{}, error) {
@@ -119,8 +119,8 @@ func (c *ReferencesDecorator) GetOneRequired(locator interface{}) (interface{}, 
 
 // Gets all component references that match specified locator.
 // Parameters:
-// 			- locator interface{}
-// 			the locator to find references by.
+//   - locator interface{}
+//   the locator to find references by.
 // Returns []interface{}
 // a list with matching component references or empty list if nothing was found.
 func (c *ReferencesDecorator) GetOptional(locator interface{}) []interface{} {
@@ -137,8 +137,8 @@ func (c *ReferencesDecorator) GetOptional(locator interface{}) []interface{} {
 
 // Gets all component references that match specified locator. At least one component reference must be present. If it doesn't the method throws an error.
 // Parameters:
-// 			- locator interface{}
-// the locator to find references by.
+//   - locator interface{}
+//   the locator to find references by.
 // Returns []interface{}
 // a list with matching component references and error a ReferenceError when no references found.
 func (c *ReferencesDecorator) GetRequired(locator interface{}) ([]interface{}, error) {
@@ -147,10 +147,10 @@ func (c *ReferencesDecorator) GetRequired(locator interface{}) ([]interface{}, e
 
 // Gets all component references that match specified locator.
 // Parameters:
-// 			- locator interface{}
-// 			the locator to find a reference by.
-// 			- required bool
-// 			forces to raise an exception if no reference is found.
+//   - locator interface{}
+//   the locator to find a reference by.
+//   - required bool
+//   forces to raise an exception if no reference is found.
 // Returns []interface{}, error
 // a list with matching component references and a ReferenceError when required is set to true but no references found
 func (c *ReferencesDecorator) Find(locator interface{}, required bool) ([]interface{}, error) {
