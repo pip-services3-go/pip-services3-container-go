@@ -145,7 +145,7 @@ func (c *BuildReferencesDecorator) GetOneOptional(locator interface{}) interface
 
 // Gets a required component reference that matches specified locator.
 // throws
-// a [[ReferenceException]] when no references found.
+// a ReferenceException when no references found.
 // Parameters:
 //   - locator interface{}
 //   the locator to find a reference by.
@@ -173,7 +173,7 @@ func (c *BuildReferencesDecorator) GetOptional(locator interface{}) []interface{
 // Gets all component references that match specified locator. At least one component reference must be present.
 // If it doesn't the method throws an error.
 // throws
-// a [[ReferenceException]] when no references found.
+// a ReferenceException when no references found.
 // Parameters:
 //  - locator interface{}
 //  the locator to find references by.
@@ -185,7 +185,7 @@ func (c *BuildReferencesDecorator) GetRequired(locator interface{}) ([]interface
 
 // Gets all component references that match specified locator.
 // throws
-// a [[ReferenceError]] when required is set to true but no references found.
+// a ReferenceError when required is set to true but no references found.
 // Parameters:
 //   - locator interface
 //   the locator to find a reference by.

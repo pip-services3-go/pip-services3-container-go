@@ -108,7 +108,7 @@ func (c *ReferencesDecorator) GetOneOptional(locator interface{}) interface{} {
 //   - locator interface{}
 //   the locator to find a reference by.
 // Returns interface{}, error
-// a matching component reference, a [[ReferenceError]] when no references found.
+// a matching component reference, a ReferenceError when no references found.
 func (c *ReferencesDecorator) GetOneRequired(locator interface{}) (interface{}, error) {
 	components, err := c.Find(locator, true)
 	if err != nil || len(components) == 0 {
