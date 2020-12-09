@@ -51,18 +51,18 @@ Example
   - descriptor: mygroup:mycomponent1:default:default:1.0
     param1: 123
     param2: ABC
-  
+
   - type: mycomponent2,mypackage
     param1: 321
     param2: XYZ
   ============================
- 
+
   container := NewEmptyContainer();
   container.AddFactory(newMyComponentFactory());
-  
+
   parameters := NewConfigParamsFromValue(process.env);
   container.ReadConfigFromFile("123", "./config/config.yml", parameters);
-  
+
   container.Open("123", (err) => {
       console.Log("Container is opened");
       ...
@@ -226,7 +226,10 @@ func (c *Container) Open(correlationId string) error {
 	// Create references with configured components
 	c.references = refer.NewContainerReferences()
 	c.initReferences(c.references)
-	c.references.PutFromConfig(c.config)
+	err = c.references.PutFromConfig(c.config)
+	if err != nil {
+		return err
+	}
 
 	if c.referenceable != nil {
 		c.referenceable.SetReferences(c.references)
