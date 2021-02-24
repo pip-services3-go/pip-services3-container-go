@@ -168,7 +168,7 @@ func (c *ProcessContainer) captureExit(correlationId string) {
 		select {
 		case <-ch:
 			c.Close(correlationId)
-			c.Logger().Info(correlationId, "Googbye!")
+			c.Logger().Info(correlationId, "Goodbye!")
 			os.Exit(0)
 		}
 	}()
