@@ -1,6 +1,8 @@
 package config
 
 import (
+	"sort"
+
 	"github.com/pip-services3-go/pip-services3-commons-go/config"
 )
 
@@ -43,6 +45,8 @@ func ReadContainerConfigFromConfig(config *config.ConfigParams) (ContainerConfig
 	}
 
 	names := config.GetSectionNames()
+	// Sort so components should come in a right order
+	sort.Strings(names)
 	result := make([]*ComponentConfig, len(names))
 	for i, v := range names {
 		c := config.GetSection(v)
