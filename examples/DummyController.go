@@ -8,15 +8,15 @@ import (
 )
 
 type DummyController struct {
-	timer *run.FixedRateTimer
-	logger *log.CompositeLogger
+	timer   *run.FixedRateTimer
+	logger  *log.CompositeLogger
 	message string
 	counter int
 }
 
 func NewDummyController() *DummyController {
-	c := &DummyController {
-		logger: log.NewCompositeLogger(),
+	c := &DummyController{
+		logger:  log.NewCompositeLogger(),
 		message: "Hello World!",
 		counter: 0,
 	}

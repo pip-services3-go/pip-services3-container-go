@@ -1,6 +1,7 @@
 package container
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"os/signal"
@@ -25,7 +26,7 @@ Container
 Example
   container = NewEmptyProcessContainer();
   container.Container.AddFactory(NewMyComponentFactory());
-  
+
   container.Run(process.args);
 */
 type ProcessContainer struct {
@@ -152,7 +153,11 @@ func (c *ProcessContainer) printHelp() {
 
 func (c *ProcessContainer) captureErrors(correlationId string) {
 	if r := recover(); r != nil {
-		err, _ := r.(error)
+		err, ok := r.(error)
+		if !ok {
+			msg, _ := r.(string)
+			err = errors.New(msg)
+		}
 		c.Logger().Fatal(correlationId, err, "Process is terminated")
 		os.Exit(1)
 	}

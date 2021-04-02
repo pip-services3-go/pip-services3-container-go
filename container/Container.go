@@ -1,8 +1,10 @@
 package container
 
 import (
+	"errors"
+
 	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
-	"github.com/pip-services3-go/pip-services3-commons-go/errors"
+	cerr "github.com/pip-services3-go/pip-services3-commons-go/errors"
 	crefer "github.com/pip-services3-go/pip-services3-commons-go/refer"
 	cbuild "github.com/pip-services3-go/pip-services3-components-go/build"
 	"github.com/pip-services3-go/pip-services3-components-go/info"
@@ -208,14 +210,18 @@ func (c *Container) Open(correlationId string) error {
 	var err error
 
 	if c.references != nil {
-		return errors.NewInvalidStateError(
+		return cerr.NewInvalidStateError(
 			correlationId, "ALREADY_OPENED", "Container was already opened",
 		)
 	}
 
 	defer func() {
 		if r := recover(); r != nil {
-			err, _ = r.(error)
+			err, ok := r.(error)
+			if !ok {
+				msg, _ := r.(string)
+				err = errors.New(msg)
+			}
 			c.logger.Error(correlationId, err, "Failed to start container")
 			c.Close(correlationId)
 		}
@@ -272,7 +278,11 @@ func (c *Container) Close(correlationId string) error {
 
 	defer func() {
 		if r := recover(); r != nil {
-			err, _ = r.(error)
+			err, ok := r.(error)
+			if !ok {
+				msg, _ := r.(string)
+				err = errors.New(msg)
+			}
 			c.logger.Error(correlationId, err, "Failed to stop container")
 		}
 	}()
