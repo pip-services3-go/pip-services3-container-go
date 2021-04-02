@@ -206,8 +206,8 @@ func (c *Container) IsOpen() bool {
 //   - correlationId string
 //   transaction id to trace execution through call chain.
 // Returns error
-func (c *Container) Open(correlationId string) error {
-	var err error
+func (c *Container) Open(correlationId string) (err error) {
+	//var err error
 
 	if c.references != nil {
 		return cerr.NewInvalidStateError(
@@ -217,12 +217,13 @@ func (c *Container) Open(correlationId string) error {
 
 	defer func() {
 		if r := recover(); r != nil {
-			err, ok := r.(error)
+			recoverErr, ok := r.(error)
 			if !ok {
 				msg, _ := r.(string)
-				err = errors.New(msg)
+				recoverErr = errors.New(msg)
 			}
-			c.logger.Error(correlationId, err, "Failed to start container")
+			err = recoverErr
+			c.logger.Error(correlationId, recoverErr, "Failed to start container")
 			c.Close(correlationId)
 		}
 	}()
