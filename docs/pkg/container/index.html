@@ -144,7 +144,7 @@
 					<dd>&nbsp; &nbsp; <a href="index.html#Container.Logger">func (c *Container) Logger() log.ILogger</a></dd>
 				
 					
-					<dd>&nbsp; &nbsp; <a href="index.html#Container.Open">func (c *Container) Open(correlationId string) error</a></dd>
+					<dd>&nbsp; &nbsp; <a href="index.html#Container.Open">func (c *Container) Open(correlationId string) (err error)</a></dd>
 				
 					
 					<dd>&nbsp; &nbsp; <a href="index.html#Container.ReadConfigFromFile">func (c *Container) ReadConfigFromFile(correlationId string, path string, parameters *cconfig.ConfigParams) error</a></dd>
@@ -204,7 +204,7 @@
 		
 			
 			
-			<h2 id="Container">type <a href="http://localhost:6060/src/container/Container.go?s=2943:3238#L64">Container</a>
+			<h2 id="Container">type <a href="http://localhost:6060/src/container/Container.go?s=2971:3266#L65">Container</a>
 				<a class="permalink" href="index.html#Container">&#xb6;</a>
 				
 				
@@ -267,19 +267,17 @@ Example
   param2: XYZ
 ============================
 
-container := NewEmptyContainer();
-container.AddFactory(newMyComponentFactory());
+container := NewEmptyContainer()
+container.AddFactory(newMyComponentFactory())
 
-parameters := NewConfigParamsFromValue(process.env);
-container.ReadConfigFromFile(&#34;123&#34;, &#34;./config/config.yml&#34;, parameters);
+parameters := NewConfigParamsFromValue(process.env)
+container.ReadConfigFromFile(&#34;123&#34;, &#34;./config/config.yml&#34;, parameters)
 
-container.Open(&#34;123&#34;, (err) =&gt; {
-    console.Log(&#34;Container is opened&#34;);
-    ...
-    container.Close(&#34;123&#34;, (err) =&gt; {
-        console.Log(&#34;Container is closed&#34;);
-    });
-});
+err := container.Open(&#34;123&#34;)
+ftm.Println(&#34;Container is opened&#34;)
+...
+err = container.Close(&#34;123&#34;)
+fmt.Println(&#34;Container is closed&#34;)
 </pre>
 
 			<pre>type Container struct {
@@ -297,7 +295,7 @@ container.Open(&#34;123&#34;, (err) =&gt; {
 
 			
 				
-				<h3 id="InheritContainer">func <a href="http://localhost:6060/src/container/Container.go?s=4225:4328#L109">InheritContainer</a>
+				<h3 id="InheritContainer">func <a href="http://localhost:6060/src/container/Container.go?s=4253:4356#L110">InheritContainer</a>
 					<a class="permalink" href="index.html#InheritContainer">&#xb6;</a>
 					
 					
@@ -323,7 +321,7 @@ Returns *Container
 				
 			
 				
-				<h3 id="NewContainer">func <a href="http://localhost:6060/src/container/Container.go?s=3726:3787#L91">NewContainer</a>
+				<h3 id="NewContainer">func <a href="http://localhost:6060/src/container/Container.go?s=3754:3815#L92">NewContainer</a>
 					<a class="permalink" href="index.html#NewContainer">&#xb6;</a>
 					
 					
@@ -346,7 +344,7 @@ Returns *Container
 				
 			
 				
-				<h3 id="NewEmptyContainer">func <a href="http://localhost:6060/src/container/Container.go?s=3312:3347#L76">NewEmptyContainer</a>
+				<h3 id="NewEmptyContainer">func <a href="http://localhost:6060/src/container/Container.go?s=3340:3375#L77">NewEmptyContainer</a>
 					<a class="permalink" href="index.html#NewEmptyContainer">&#xb6;</a>
 					
 					
@@ -363,7 +361,7 @@ Returns *Container
 
 			
 				
-				<h3 id="Container.AddFactory">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=6364:6419#L181">AddFactory</a>
+				<h3 id="Container.AddFactory">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=6392:6447#L182">AddFactory</a>
 					<a class="permalink" href="index.html#Container.AddFactory">&#xb6;</a>
 					
 					
@@ -382,7 +380,7 @@ a component factory to be added.
 				
 			
 				
-				<h3 id="Container.Close">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=8206:8259#L252">Close</a>
+				<h3 id="Container.Close">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=8390:8443#L261">Close</a>
 					<a class="permalink" href="index.html#Container.Close">&#xb6;</a>
 					
 					
@@ -404,7 +402,7 @@ Returns error
 				
 			
 				
-				<h3 id="Container.Configure">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=4677:4734#L125">Configure</a>
+				<h3 id="Container.Configure">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=4705:4762#L126">Configure</a>
 					<a class="permalink" href="index.html#Container.Configure">&#xb6;</a>
 					
 					
@@ -423,7 +421,7 @@ configuration parameters to be set.
 				
 			
 				
-				<h3 id="Container.Info">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=6091:6135#L173">Info</a>
+				<h3 id="Container.Info">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=6119:6163#L174">Info</a>
 					<a class="permalink" href="index.html#Container.Info">&#xb6;</a>
 					
 					
@@ -435,7 +433,7 @@ configuration parameters to be set.
 				
 			
 				
-				<h3 id="Container.IsOpen">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=6567:6600#L188">IsOpen</a>
+				<h3 id="Container.IsOpen">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=6595:6628#L189">IsOpen</a>
 					<a class="permalink" href="index.html#Container.IsOpen">&#xb6;</a>
 					
 					
@@ -452,7 +450,7 @@ true if the component has been opened and false otherwise.
 				
 			
 				
-				<h3 id="Container.Logger">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=5954:5994#L165">Logger</a>
+				<h3 id="Container.Logger">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=5982:6022#L166">Logger</a>
 					<a class="permalink" href="index.html#Container.Logger">&#xb6;</a>
 					
 					
@@ -464,12 +462,12 @@ true if the component has been opened and false otherwise.
 				
 			
 				
-				<h3 id="Container.Open">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=6777:6829#L197">Open</a>
+				<h3 id="Container.Open">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=6805:6863#L198">Open</a>
 					<a class="permalink" href="index.html#Container.Open">&#xb6;</a>
 					
 					
 				</h3>
-				<pre>func (c *<a href="index.html#Container">Container</a>) Open(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) <a href="http://localhost:6060/pkg/builtin/#error">error</a></pre>
+				<pre>func (c *<a href="index.html#Container">Container</a>) Open(correlationId <a href="http://localhost:6060/pkg/builtin/#string">string</a>) (err <a href="http://localhost:6060/pkg/builtin/#error">error</a>)</pre>
 				<p>
 Opens the component.
 Parameters:
@@ -486,7 +484,7 @@ Returns error
 				
 			
 				
-				<h3 id="Container.ReadConfigFromFile">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=5165:5279#L137">ReadConfigFromFile</a>
+				<h3 id="Container.ReadConfigFromFile">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=5193:5307#L138">ReadConfigFromFile</a>
 					<a class="permalink" href="index.html#Container.ReadConfigFromFile">&#xb6;</a>
 					
 					
@@ -512,7 +510,7 @@ values to parameters the configuration or null to skip parameterization.
 				
 			
 				
-				<h3 id="Container.SetLogger">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=6017:6066#L169">SetLogger</a>
+				<h3 id="Container.SetLogger">func (*Container) <a href="http://localhost:6060/src/container/Container.go?s=6045:6094#L170">SetLogger</a>
 					<a class="permalink" href="index.html#Container.SetLogger">&#xb6;</a>
 					
 					
@@ -526,7 +524,7 @@ values to parameters the configuration or null to skip parameterization.
 		
 			
 			
-			<h2 id="ProcessContainer">type <a href="http://localhost:6060/src/container/ProcessContainer.go?s=890:952#L21">ProcessContainer</a>
+			<h2 id="ProcessContainer">type <a href="http://localhost:6060/src/container/ProcessContainer.go?s=898:960#L22">ProcessContainer</a>
 				<a class="permalink" href="index.html#ProcessContainer">&#xb6;</a>
 				
 				
@@ -570,7 +568,7 @@ container.Run(process.args);
 
 			
 				
-				<h3 id="InheritProcessContainer">func <a href="http://localhost:6060/src/container/ProcessContainer.go?s=2057:2174#L62">InheritProcessContainer</a>
+				<h3 id="InheritProcessContainer">func <a href="http://localhost:6060/src/container/ProcessContainer.go?s=2065:2182#L63">InheritProcessContainer</a>
 					<a class="permalink" href="index.html#InheritProcessContainer">&#xb6;</a>
 					
 					
@@ -596,7 +594,7 @@ Returns *Container
 				
 			
 				
-				<h3 id="NewEmptyProcessContainer">func <a href="http://localhost:6060/src/container/ProcessContainer.go?s=1032:1081#L28">NewEmptyProcessContainer</a>
+				<h3 id="NewEmptyProcessContainer">func <a href="http://localhost:6060/src/container/ProcessContainer.go?s=1040:1089#L29">NewEmptyProcessContainer</a>
 					<a class="permalink" href="index.html#NewEmptyProcessContainer">&#xb6;</a>
 					
 					
@@ -611,7 +609,7 @@ Returns ProcessContainer
 				
 			
 				
-				<h3 id="NewProcessContainer">func <a href="http://localhost:6060/src/container/ProcessContainer.go?s=1476:1551#L44">NewProcessContainer</a>
+				<h3 id="NewProcessContainer">func <a href="http://localhost:6060/src/container/ProcessContainer.go?s=1484:1559#L45">NewProcessContainer</a>
 					<a class="permalink" href="index.html#NewProcessContainer">&#xb6;</a>
 					
 					
@@ -636,7 +634,7 @@ Returns ProcessContainer
 
 			
 				
-				<h3 id="ProcessContainer.Run">func (*ProcessContainer) <a href="http://localhost:6060/src/container/ProcessContainer.go?s=4719:4764#L172">Run</a>
+				<h3 id="ProcessContainer.Run">func (*ProcessContainer) <a href="http://localhost:6060/src/container/ProcessContainer.go?s=4792:4837#L177">Run</a>
 					<a class="permalink" href="index.html#ProcessContainer.Run">&#xb6;</a>
 					
 					
@@ -656,7 +654,7 @@ command line arguments
 				
 			
 				
-				<h3 id="ProcessContainer.SetConfigPath">func (*ProcessContainer) <a href="http://localhost:6060/src/container/ProcessContainer.go?s=2394:2453#L73">SetConfigPath</a>
+				<h3 id="ProcessContainer.SetConfigPath">func (*ProcessContainer) <a href="http://localhost:6060/src/container/ProcessContainer.go?s=2402:2461#L74">SetConfigPath</a>
 					<a class="permalink" href="index.html#ProcessContainer.SetConfigPath">&#xb6;</a>
 					
 					
