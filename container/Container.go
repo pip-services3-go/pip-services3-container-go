@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
+	cconv "github.com/pip-services3-go/pip-services3-commons-go/convert"
 	cerr "github.com/pip-services3-go/pip-services3-commons-go/errors"
 	crefer "github.com/pip-services3-go/pip-services3-commons-go/refer"
 	cbuild "github.com/pip-services3-go/pip-services3-components-go/build"
@@ -59,19 +60,17 @@ Example
     param2: XYZ
   ============================
 
-  container := NewEmptyContainer();
-  container.AddFactory(newMyComponentFactory());
+  container := NewEmptyContainer()
+  container.AddFactory(newMyComponentFactory())
 
-  parameters := NewConfigParamsFromValue(process.env);
-  container.ReadConfigFromFile("123", "./config/config.yml", parameters);
+  parameters := NewConfigParamsFromValue(process.env)
+  container.ReadConfigFromFile("123", "./config/config.yml", parameters)
 
-  container.Open("123", (err) => {
-      console.Log("Container is opened");
-      ...
-      container.Close("123", (err) => {
-          console.Log("Container is closed");
-      });
-  });
+  err := container.Open("123")
+  ftm.Println("Container is opened")
+  ...
+  err = container.Close("123")
+  fmt.Println("Container is closed")
 */
 type Container struct {
 	logger          log.ILogger
@@ -281,7 +280,7 @@ func (c *Container) Close(correlationId string) error {
 		if r := recover(); r != nil {
 			err, ok := r.(error)
 			if !ok {
-				msg, _ := r.(string)
+				msg := cconv.StringConverter.ToString(r)
 				err = errors.New(msg)
 			}
 			c.logger.Error(correlationId, err, "Failed to stop container")
