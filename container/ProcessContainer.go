@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/signal"
 	"strings"
-	"time"
 
 	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
 	crefer "github.com/pip-services3-go/pip-services3-commons-go/refer"
@@ -212,7 +211,6 @@ func (c *ProcessContainer) Run(args []string) {
 		return
 	}
 
-	for {
-		time.Sleep(100)
-	}
+	ch := make(chan bool)
+	<-ch
 }
