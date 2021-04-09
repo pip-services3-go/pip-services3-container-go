@@ -8,6 +8,7 @@ import (
 	"strings"
 
 	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
+	cconv "github.com/pip-services3-go/pip-services3-commons-go/convert"
 	crefer "github.com/pip-services3-go/pip-services3-commons-go/refer"
 	"github.com/pip-services3-go/pip-services3-components-go/log"
 )
@@ -154,7 +155,7 @@ func (c *ProcessContainer) captureErrors(correlationId string) {
 	if r := recover(); r != nil {
 		err, ok := r.(error)
 		if !ok {
-			msg, _ := r.(string)
+			msg := cconv.StringConverter.ToString(r)
 			err = errors.New(msg)
 		}
 		c.Logger().Fatal(correlationId, err, "Process is terminated")
