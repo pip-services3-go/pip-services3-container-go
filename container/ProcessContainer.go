@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/signal"
 	"strings"
+	"syscall"
 
 	cconfig "github.com/pip-services3-go/pip-services3-commons-go/config"
 	cconv "github.com/pip-services3-go/pip-services3-commons-go/convert"
@@ -167,7 +168,7 @@ func (c *ProcessContainer) captureExit(correlationId string) {
 	c.Logger().Info(correlationId, "Press Control-C to stop the microservice...")
 
 	ch := make(chan os.Signal)
-	signal.Notify(ch, os.Interrupt)
+	signal.Notify(ch, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
 
 	go func() {
 		select {
