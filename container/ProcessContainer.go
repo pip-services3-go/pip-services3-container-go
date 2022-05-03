@@ -156,31 +156,17 @@ func (c *ProcessContainer) printHelp() {
 }
 
 func (c *ProcessContainer) captureErrors(correlationId string) {
+	c.Logger().Info(correlationId, "Try recover...")
 	if r := recover(); r != nil {
 		err, ok := r.(error)
 		if !ok {
 			msg := cconv.StringConverter.ToString(r)
 			err = errors.New(msg)
 		}
+		c.Close(correlationId)
 		c.Logger().Fatal(correlationId, err, "Process is terminated")
 		os.Exit(1)
 	}
-}
-
-func (c *ProcessContainer) captureExit(correlationId string) {
-	c.Logger().Info(correlationId, "Press Control-C to stop the microservice...")
-
-	ch := make(chan os.Signal)
-	signal.Notify(ch, os.Interrupt, syscall.SIGINT, syscall.SIGTERM)
-
-	go func() {
-		select {
-		case <-ch:
-			c.Close(correlationId)
-			c.Logger().Info(correlationId, "Goodbye!")
-			os.Exit(0)
-		}
-	}()
 }
 
 // Runs the container by instantiating and running components inside the container.
@@ -206,16 +192,26 @@ func (c *ProcessContainer) Run(args []string) {
 		return
 	}
 
+	c.Logger().Info(correlationId, "Press Control-C to stop the microservice...")
+
 	defer c.captureErrors(correlationId)
-	c.captureExit(correlationId)
 
 	err = c.Open(correlationId)
 	if err != nil {
+		c.Close(correlationId)
 		c.Logger().Fatal(correlationId, err, "Process is terminated")
 		os.Exit(1)
 		return
 	}
 
-	ch := make(chan bool)
-	<-ch
+	ch := make(chan os.Signal)
+	signal.Notify(ch, os.Interrupt, syscall.SIGINT, syscall.SIGTERM, syscall.SIGQUIT, syscall.SIGHUP, syscall.SIGABRT)
+
+	select {
+	case <-ch:
+		c.Close(correlationId)
+		c.Logger().Info(correlationId, "Goodbye!")
+		os.Exit(0)
+	}
+
 }
